@@ -3,7 +3,7 @@ import re
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-from config import DRIVER_PATH, ARTICLES_PATH
+from config import DRIVER_PATH
 
 
 def _get_clean_text(html: str) -> str:

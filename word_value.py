@@ -44,30 +44,31 @@ def _get_words_weights(bow_corpus, my_dictionary) -> list:
 
     tfIdf = models.TfidfModel(bow_corpus, smartirs='ntc')
 
-    weight_tfidf = []
+    word_weights = []
     for doc in tfIdf[bow_corpus]:
         for id, freq in doc:
-            weight_tfidf.append(
+            word_weights.append(
                 [my_dictionary[id], np.around(freq, decimals=3)])
 
-    weight_tfidf = sorted(weight_tfidf, key=lambda para: para[1], reverse=True)
+    word_weights = sorted(word_weights, key=lambda para: para[1], reverse=True)
+    print(word_weights)
 
-    return weight_tfidf
+    return word_weights
 
 
-def _get_clean_weights(weight_tfidf):
+def _get_clean_weights(word_weights):
     """Приводит слова к начальной форме и убирает из списка слов дубликаты"""
 
-    words = ' '.join([i[0] for i in weight_tfidf])
+    words = ' '.join([i[0] for i in word_weights])
     text_tokens = word_tokenize(words)
     eng_words = _get_eng_words(text_tokens)
 
-    for i in range(len(weight_tfidf)):
-        weight_tfidf[i][0] = text_tokens[i]
+    for i in range(len(word_weights)):
+        word_weights[i][0] = text_tokens[i]
 
     clean_weights = {}
 
-    for i in weight_tfidf:
+    for i in word_weights:
         if i[0] not in clean_weights.keys() and i[0] not in eng_words:
             clean_weights[i[0]] = i[1]
 
@@ -95,11 +96,12 @@ def word_value_cloud_main(filename: str):
 
     my_dictionary = corpora.Dictionary(tokenized)
 
+    #https://www.tutorialspoint.com/gensim/gensim_creating_a_bag_of_words_corpus.htm
     bow_corpus = [my_dictionary.doc2bow(
         doc, allow_update=True) for doc in tokenized]
 
-    weight_tfidf = _get_words_weights(bow_corpus, my_dictionary)
-    clean_weights = _get_clean_weights(weight_tfidf)
+    word_weights = _get_words_weights(bow_corpus, my_dictionary)
+    clean_weights = _get_clean_weights(word_weights)
 
     # print(clean_weights)
 

@@ -9,7 +9,6 @@ def _get_article_text(filename: str) -> str:
     """
     Достаёт текст из файла
     """
-
     with open(f'articles/{filename}.txt', encoding='utf-8') as f:
         text = f.read()
 
