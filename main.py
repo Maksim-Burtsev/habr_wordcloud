@@ -27,4 +27,5 @@ def make_word_cloud(link: str) -> None | str:
 
 
 if __name__ == '__main__':
-    make_word_cloud('https://habr.com/ru/post/664882')
+    # make_word_cloud('https://habr.com/ru/post/664882')
+    make_word_cloud('https://habr.com/ru/company/tuturu/blog/669728/')
