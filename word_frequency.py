@@ -39,7 +39,6 @@ def _make_raw_text(file_text, russian_stopwords) -> str:
 
     for word in russian_stopwords:
         fdist.pop(word, None)
-
     text_raw = ' '.join(fdist.keys())
 
     return text_raw
