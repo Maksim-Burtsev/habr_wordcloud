@@ -51,7 +51,7 @@ def _get_words_weights(bow_corpus, my_dictionary) -> list:
                 [my_dictionary[id], np.around(freq, decimals=3)])
 
     word_weights = sorted(word_weights, key=lambda para: para[1], reverse=True)
-    print(word_weights)
+    # print(word_weights)
 
     return word_weights
 
@@ -71,7 +71,7 @@ def _get_clean_weights(word_weights):
     for i in word_weights:
         if i[0] not in clean_weights.keys() and i[0] not in eng_words:
             clean_weights[i[0]] = i[1]
-
+    # print(clean_weights)
     return clean_weights
 
 
@@ -95,8 +95,6 @@ def word_value_cloud_main(filename: str):
     tokenized = _tokinize(text)
 
     my_dictionary = corpora.Dictionary(tokenized)
-
-    #https://www.tutorialspoint.com/gensim/gensim_creating_a_bag_of_words_corpus.htm
     bow_corpus = [my_dictionary.doc2bow(
         doc, allow_update=True) for doc in tokenized]
 
