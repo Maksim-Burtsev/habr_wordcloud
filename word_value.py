@@ -110,3 +110,7 @@ def word_value_cloud_main(filename: str):
 
     filename = f'{filename}_val'
     _create_wordcloud(russian_stopwords, text_raw, filename)
+
+
+if __name__ == '__main__':
+    word_value_cloud_main('594633')

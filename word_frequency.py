@@ -42,7 +42,7 @@ def _make_raw_text(file_text, russian_stopwords) -> str:
     text_raw = ''
     for i,_ in sorted(fdist.items(), key=lambda x: x[1], reverse=True):
         text_raw += f'{i} '
-
+    print(text_raw)
     return text_raw
 
 
@@ -58,4 +58,5 @@ def word_freq_cloud_main(filename: str):
 
 
 if __name__ == '__main__':
-    word_freq_cloud_main('1234567')
+    # https://habr.com/ru/company/tuturu/blog/669728/
+    word_freq_cloud_main('669728')
